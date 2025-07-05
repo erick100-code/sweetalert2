@@ -56,55 +56,50 @@
                 animation: true,
                 theme: 'light',
                 footer: 'atenção não apague esse conteúdo sem plena certeza do que esta fazendo',
-                backdrop: true,
-                input: 'email',
+                backdrop: true,//não fehcha ao clicar fora do modal mas permiti clicar nos componentes do site
+                input: 'password',
                 width: '32rem',
                 padding: '10px',
                 color: 'black',
                 background:'white',
                 position:'center',
-                allowOutsideClick: true,// (false não fecha o modal ao clicar fora dele
+                allowOutsideClick: true,// se (false) não fecha o modal ao clicar fora dele e não permite o click nos componentes da pagina
                 allowEscapeKey: false,// não o fecha modal ao clicar no esc
                 
                 //botões
-                showConfirmButton: true,
-                showDenyButton: true,
-                showCancelButton: true,
-                confirmButtonText: 'confirmar',
-                cancelButtonText: 'cancele aqui',
-                denyButtonText: 'rejeitar',
-                denyButtonColor: 'red',
-                confirmButtonColor:' cyan',
-                cancelButtonColor: 'gold',
-                reverseButtons: false,
-                showCloseButton: true,
+                showConfirmButton: true,// mostrar o botão de confirmar
+                showDenyButton: true,// mostrar o botão de rejeitas
+                showCancelButton: true,// mostrar o botão de cancelar
+                confirmButtonText: 'confirmar',//texto do botão de confirmar
+                cancelButtonText: 'cancele aqui',// texto do botão de cancelar
+                denyButtonText: 'rejeitar',// texto do botão de rejeitar
+                denyButtonColor: 'red',// cor do botão de rejeitar
+                confirmButtonColor:' cyan',// texto do botão de confirmar
+                cancelButtonColor: 'gold',// texto do botão de cancelar
+                reverseButtons: false,// inverte os botões, se true confirmar fica a direita
+                showCloseButton: true,// mostrar o botão de fechar
                 returnFocus: false,//(false) tira o foco do elemento que invocou o modal
                 
                 //IMAGENS
-                imageUrl: 'images/water.jpg',
-                imageHeight: '250px',
-                imageWidth: '100%',
-                imageAlt: 'aguas cristalinas!',
+                imageUrl: 'images/water.jpg',// url
+                imageHeight: '250px',// altura
+                imageWidth: '100%',// largura
+                imageAlt: 'aguas cristalinas!',// texto caso a imagem não carregue
 
                 // INPUTS
-                returnInputValueOnDeny: false,
-                inputLabel:'este seria o input do label? YES/SIM',
-                inputPlaceholder: 'este é o input placeholder',
-                inputValue:'aqui vai o texto inicial do input',
-                inputAutoFocus: false,
-                inputAutoTrim: true,
-                
-                customClass: {
-                    icon: 'rotate-y',
-                },
+                returnInputValueOnDeny: false,// se true retorna o valor do input caso seja rejeitado 
+                inputLabel:'este seria o input do label? YES/SIM',// label do input
+                inputPlaceholder: 'este é o input placeholder',// texto placeholder
+                inputValue:'aqui vai o texto inicial do input',// valor inicial do input
+                inputAutoFocus: false,// ao abrir o modal o input recebe foco
+                inputAutoTrim: true,//tira o espaços nas extremidades
+            
+                timer: 2000,// tempo para ser fechado
+                timerProgressBar: true,// barra de progresso do tempo
 
-
-                //  timer: 2000,
-                //  timerProgressBar: true,
-
-            }).then((result) => {
-                console.log(result)
-                console.log(result.value)
+            }).then((result) => {// then diz o que vai ser feito caso de certo [resultado do alerta]
+                console.log(result)// mostra na tela o resultado completo
+                console.log(result.value)// value monstra o texto do input
             })
         })
        
