@@ -50,24 +50,27 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.22.2/dist/sweetalert2.all.min.js"></script>
     <script>
         document.getElementById('btnC').addEventListener('click', (infosDoEvento) => {
-            const Toast = Swal.mixin({// versão entendida para reutilizar essas configurações
-                toast: true,
-                position: 'top-end',
-                showConfirmButton: false,
-                timer: 3000,
-                timerProgressBar: true,
-                didOpen: (modal) => {// ciclo de vida do modal (modal) = elemento modal
-                    modal.onmouseenter = swal.stopTimer// quando passar o mouse dentro do modal pausa o tempo
+            const lat = swal.mixin({
+                didOpen: (modal) => {// executa assincrono quando o modal é aberto. (modal) é elemento modal
+                    modal.onmouseenter = swal.stopTimer
                     modal.onmouseleave = swal.resumeTimer
-                }
-            })
-            
-            Toast.fire({
-                icon: 'success', 
-                title: 'Signed in successfully',
+                },
+
+                toast: true,
+                position:'top-end',
+                showConfirmButton: false,
+                width: '25rem',
+                timer: 5000,
+                timerProgressBar: true,
+
             })
 
-            
+            lat.fire({
+                title:`arquivo salvo com sucesso`,
+                icon: 'success',
+            }).then((result) => {
+                console.log(result)
+            })
         })
     </script>
 </body>

@@ -39,6 +39,12 @@
         #btnC:hover {
             background-color: #6459DD;
         }
+
+        .swal2-popup a {
+            text-decoration: none;
+            color: rgb(0, 119, 255);
+            font-weight: 600;
+        }
     </style>
 </head>
 <body>
@@ -50,24 +56,12 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.22.2/dist/sweetalert2.all.min.js"></script>
     <script>
         document.getElementById('btnC').addEventListener('click', (infosDoEvento) => {
-            const Toast = Swal.mixin({// versão entendida para reutilizar essas configurações
-                toast: true,
-                position: 'top-end',
-                showConfirmButton: false,
-                timer: 3000,
-                timerProgressBar: true,
-                didOpen: (modal) => {// ciclo de vida do modal (modal) = elemento modal
-                    modal.onmouseenter = swal.stopTimer// quando passar o mouse dentro do modal pausa o tempo
-                    modal.onmouseleave = swal.resumeTimer
-                }
+            swal.fire({
+                title: 'Oops...',
+                text: 'Something went wrong!',
+                icon: 'error',
+                footer:'<a href="#">why do i have this issue?</a>',
             })
-            
-            Toast.fire({
-                icon: 'success', 
-                title: 'Signed in successfully',
-            })
-
-            
         })
     </script>
 </body>

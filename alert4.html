@@ -43,31 +43,37 @@
 </head>
 <body>
     <button id="btnC">
-        click
+        EXCLUIR
     </button>
     
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.22.2/dist/sweetalert2.all.min.js"></script>
     <script>
         document.getElementById('btnC').addEventListener('click', (infosDoEvento) => {
-            const Toast = Swal.mixin({// versão entendida para reutilizar essas configurações
-                toast: true,
-                position: 'top-end',
-                showConfirmButton: false,
-                timer: 3000,
-                timerProgressBar: true,
-                didOpen: (modal) => {// ciclo de vida do modal (modal) = elemento modal
-                    modal.onmouseenter = swal.stopTimer// quando passar o mouse dentro do modal pausa o tempo
-                    modal.onmouseleave = swal.resumeTimer
+            swal.fire({
+                icon: 'warning',
+                title: 'tem certeza que deseja excluir?',
+                showDenyButton: true,
+                confirmButtonText: 'SIM',
+                denyButtonText: 'NÃO',
+                color: 'red',
+                iconColor: 'red',
+                returnFocus: false,
+            }).then((result) => {
+                console.log(result)
+                if (result.isConfirmed) {
+                    document.getElementById('btnC').style.display = 'none'
+                    swal.fire({
+                        icon: 'success',
+                        title: 'item excluido com sucesso',
+                        toast: true,
+                        showConfirmButton: false,
+                        position:'top-end',
+                        timer: 2500,
+                        timerProgressBar: true,
+                    })
                 }
             })
-            
-            Toast.fire({
-                icon: 'success', 
-                title: 'Signed in successfully',
-            })
-
-            
         })
     </script>
 </body>
