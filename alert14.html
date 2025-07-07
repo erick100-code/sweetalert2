@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100vw;
+            box-sizing: border-box;
+            margin: 0px;
+            padding: 0px;
+
+            font-family: "Poppins", sans-serif;
+        }
+
+        #btnC {
+            padding: 15px 35px;
+
+            color: white;
+            background-color: #7066E0;
+            border: none;
+            border-radius: 5px;
+
+            text-transform: uppercase;
+            font-size: 2.5rem;
+
+            cursor: pointer;
+        }
+
+        #btnC:hover {
+            background-color: #6459DD;
+        }
+    </style>
+</head>
+<body>
+    <button id="btnC">
+        click
+    </button>
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.22.2/dist/sweetalert2.all.min.js"></script>
+    <script>
+        document.getElementById('btnC').addEventListener('click', (infosDoEvento) => {
+            swal.fire({
+                width: '45rem',
+                title: 'you name GitHub',
+                input: 'text',
+                showCancelButton: true,
+                confirmButtonText: 'click?',
+                showLoaderOnConfirm: true,// desabilita os btns e coloca o loader no lugar do btn de confirmar
+                preConfirm: async (entradaValue) => {// executa função antes do resultado do alerta
+                    try {// se estiver tudo bem com a internet etc executa...
+                        const GitHubUrl = `https://api.github.com/users/${entradaValue}`// url com o valor do input como usuario
+                        const response = await fetch(GitHubUrl)// response contem as informações da requisição
+                        if (!response.ok) {// se resposta não for ok
+                            return swal.showValidationMessage(`${JSON.stringify( await response.json())}`)
+                            // retorna mensagem de erro, ou seja, o modal não fecha
+                            // como o resultado retornado e falso, result.value não é o valor retornado
+                        }
+                        
+                        return response.json()// como return é verdadeiro no then resul.value agora é o json do response/api
+                    } catch (error) {// se der algum erro de internet, rede, etc executa...
+                        return swal.showValidationMessage(`error (${error})`)
+                    }
+                }
+            }).then((result) => {
+                swal.fire({// após o resultado dispara um alerta com...
+                    title: result.value.login,// o titulo que contem o nome de usuario da api que tem o valor do input
+                    imageUrl: result.value.avatar_url,// uma imagem do usuario da api que tem o nome digitado do input
+                })
+            })
+        })
+    </script>
+</body>
+</html>
